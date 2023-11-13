@@ -45,12 +45,12 @@ public class CustomAdapter extends BaseAdapter {
         View myView = layoutInflater.inflate(R.layout.item,parent,false);
 
         // Populate the view with data from your HashMap
-        HashMap<String, String> item = filteredList.get(position);
+        HashMap<String, String> hashMap = filteredList.get(position);
         TextView text1 = myView.findViewById(R.id.itemCat);
         TextView text2 = myView.findViewById(R.id.itemTitle);
 
-        text1.setText(item.get("cat"));
-        text2.setText(item.get("title"));
+        text1.setText(hashMap.get("cat"));
+        text2.setText(hashMap.get("title"));
 
         return myView;
     }
@@ -65,8 +65,7 @@ public class CustomAdapter extends BaseAdapter {
             for (HashMap<String, String> item : itemList) {
                 // Implement your search logic here
                 // For example, search in specific keys within the HashMap
-                if (item.get("cat").toLowerCase().contains(query)
-                        || item.get("title").toLowerCase().contains(query)) {
+                if (item.get("cat").toLowerCase().contains(query) || item.get("title").toLowerCase().contains(query)) {
                     filteredList.add(item);
                 }
             }

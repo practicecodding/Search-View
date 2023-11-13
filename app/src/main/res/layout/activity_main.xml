@@ -8,18 +8,18 @@
     android:padding="10dp"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:iconifiedByDefault="false"
-        app:searchIcon="@null"
-        app:queryBackground="@null"
-        app:queryHint="Search Item"
-        android:background="@drawable/custom_search"
-        >
+<!--    <androidx.appcompat.widget.SearchView-->
+<!--        android:id="@+id/searchView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:iconifiedByDefault="false"-->
+<!--        app:searchIcon="@null"-->
+<!--        app:queryBackground="@null"-->
+<!--        app:queryHint="Search Item"-->
+<!--        android:background="@drawable/custom_search"-->
+<!--        >-->
 
-    </androidx.appcompat.widget.SearchView>
+<!--    </androidx.appcompat.widget.SearchView>-->
 
     <GridView
         android:id="@+id/gridView"
