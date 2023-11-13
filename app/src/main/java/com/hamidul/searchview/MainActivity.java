@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +32,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     GridView gridView;
-//    SearchView searchView;
+    SearchView searchView;
     HashMap<String,String> hashMap;
     ArrayList<HashMap<String,String>> backup = new ArrayList<>();
     @Override
@@ -40,38 +41,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         gridView = findViewById(R.id.gridView);
-//        searchView = findViewById(R.id.searchView);
+        searchView = findViewById(R.id.searchView);
+
 
         newsDetails();
 
         CustomAdapter myAdapter = new CustomAdapter(this,backup);
         gridView.setAdapter(myAdapter);
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                myAdapter.filter(newText);
-//                return true;
-//            }
-//        });
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu,menu);
-
-        MenuItem menuItem = menu.findItem(R.id.action_search);
-
-        SearchView searchView = (SearchView) menuItem.getActionView();
-
-        searchView.setQueryHint("Search Name");
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -80,13 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                CustomAdapter customAdapter = new CustomAdapter(MainActivity.this,backup);
-                customAdapter.filter(newText);
+                myAdapter.filter(newText);
                 return true;
             }
         });
 
-        return super.onCreateOptionsMenu(menu);
     }
 
     private void newsDetails (){
