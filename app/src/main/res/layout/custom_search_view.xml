@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.SearchView
-        android:theme="@style/SearchView.Outlined"
+        android:theme="@style/cursorColor"
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -13,6 +13,7 @@
         app:queryBackground="@null"
         app:queryHint="Search Name"
         android:background="@drawable/custom_search"
+        app:closeIcon="@drawable/baseline_close_24"
         />
 
 </FrameLayout>
