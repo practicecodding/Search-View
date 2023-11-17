@@ -61,41 +61,7 @@ public class MainActivity extends AppCompatActivity {
         myAdapter = new CustomAdapter(this,backup);
         gridView.setAdapter(myAdapter);
 
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                myAdapter.filter(newText);
-//                return true;
-//            }
-//        });
-
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//        getMenuInflater().inflate(R.menu.menu,menu);
-//
-//        MenuItem menuItem = menu.findItem(R.id.action_search);
-//
-//        SearchView searchView = (SearchView) menuItem.getActionView();
-//
-//        View searchViewLayout = getLayoutInflater().inflate(R.layout.custom_search_view, null);
-//
-//        // Set the custom layout as the action view for the SearchView
-//        menuItem.setActionView(searchViewLayout);
-//
-////        searchView.setBackgroundResource(R.drawable.custom_actionbar);
-////
-////        searchView.setQueryHint("Search Anything");
-//
-//        return super.onCreateOptionsMenu(menu);
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -134,14 +100,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
     private void newsDetails (){
-
-//        hashMap = new HashMap<>();
-//        hashMap.put("cat","");
-//        hashMap.put("imageUrl","");
-//        hashMap.put("title","");
-//        hashMap.put("des","");
-//        arrayList.add(hashMap);
-
 
         hashMap = new HashMap<>();
         hashMap.put("cat","Tech");
