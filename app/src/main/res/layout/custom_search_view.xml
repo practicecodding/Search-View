@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.SearchView
+        android:theme="@style/SearchView.Outlined"
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="35dp"

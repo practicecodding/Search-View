@@ -8,4 +8,8 @@
 
     <style name="Theme.SearchView" parent="Base.Theme.SearchView" />
 
+    <style name="SearchView.Outlined" parent="">
+        <item name="colorControlActivated">#000000</item>
+    </style>
+
 </resources>

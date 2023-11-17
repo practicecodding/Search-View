@@ -13,13 +13,16 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
+import android.text.InputType;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
@@ -123,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             });
+
+            searchView.requestFocus();
+
         }
 
         return super.onCreateOptionsMenu(menu);
