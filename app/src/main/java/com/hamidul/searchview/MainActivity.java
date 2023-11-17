@@ -2,18 +2,24 @@ package com.hamidul.searchview;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
@@ -24,7 +30,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,37 +37,96 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     GridView gridView;
-    SearchView searchView;
     HashMap<String,String> hashMap;
     ArrayList<HashMap<String,String>> backup = new ArrayList<>();
+    Toolbar toolbar;
+    public static CustomAdapter myAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_main);
 
         gridView = findViewById(R.id.gridView);
-        searchView = findViewById(R.id.searchView);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         newsDetails();
 
-        CustomAdapter myAdapter = new CustomAdapter(this,backup);
+        myAdapter = new CustomAdapter(this,backup);
         gridView.setAdapter(myAdapter);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                myAdapter.filter(newText);
-                return true;
-            }
-        });
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                myAdapter.filter(newText);
+//                return true;
+//            }
+//        });
 
     }
 
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//
+//        getMenuInflater().inflate(R.menu.menu,menu);
+//
+//        MenuItem menuItem = menu.findItem(R.id.action_search);
+//
+//        SearchView searchView = (SearchView) menuItem.getActionView();
+//
+//        View searchViewLayout = getLayoutInflater().inflate(R.layout.custom_search_view, null);
+//
+//        // Set the custom layout as the action view for the SearchView
+//        menuItem.setActionView(searchViewLayout);
+//
+////        searchView.setBackgroundResource(R.drawable.custom_actionbar);
+////
+////        searchView.setQueryHint("Search Anything");
+//
+//        return super.onCreateOptionsMenu(menu);
+//    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+
+        if (menuItem != null) {
+            // Inflate the custom layout for SearchView
+            View myView = LayoutInflater.from(this).inflate(R.layout.custom_search_view, null);
+
+            // Find the SearchView within the custom layout
+            SearchView searchView = myView.findViewById(R.id.searchView);
+
+            // Set the custom layout as the action view for the MenuItem
+            menuItem.setActionView(myView);
+
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    // Handle query submission
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    myAdapter.filter(newText);
+                    return true;
+                }
+            });
+        }
+
+        return super.onCreateOptionsMenu(menu);
+    }
     private void newsDetails (){
 
 //        hashMap = new HashMap<>();
